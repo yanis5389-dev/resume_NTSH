@@ -75,6 +75,27 @@
             font-size: 14px;
             color: #777;
         }
+
+        /* 新增 QR Code 容器與圖片樣式 */
+        .qr-section {
+            margin-bottom: 15px;
+        }
+
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 5px;
+        }
+
+        .qr-text {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #666;
+        }
     </style>
 </head>
 
@@ -127,7 +148,12 @@
 </div>
 
 <footer>
-    © 2026 王福星 學習歷程檔案
+    <!-- 新增的 QR Code 區塊 -->
+    <div class="qr-section">
+        <img src="static/images/qr_code.jpg" alt="學習歷程 QR Code" class="qr-code">
+        <div class="qr-text">掃描 QR Code 開啟本頁面</div>
+    </div>
+    © 2026 楊鈞亞 學習歷程檔案
 </footer>
 
 </body>
