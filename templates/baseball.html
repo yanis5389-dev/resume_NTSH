@@ -1,16 +1,590 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
-    <title>棒球</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>⚾ 棒球專區｜楊鈞亞學習歷程</title>
+
+    <style>
+
+        /* =========================
+           基本設定
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(135deg, #e8f5e9, #ffffff);
+            color: #333;
+        }
+
+
+        /* =========================
+           頂部 Hero
+        ========================= */
+
+        header {
+            background: linear-gradient(135deg, #1b5e20, #43a047);
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        header .ball {
+            font-size: 70px;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 42px;
+        }
+
+        header p {
+            margin-top: 15px;
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+
+        /* =========================
+           導覽列
+        ========================= */
+
+        nav {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #1b5e20;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #e53935;
+        }
+
+
+        /* =========================
+           主要內容
+        ========================= */
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            color: #1b5e20;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+
+        /* =========================
+           功能卡片
+        ========================= */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 18px;
+            padding: 30px 25px;
+            text-align: center;
+
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+            transition:
+                transform 0.3s,
+                box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #1b5e20;
+            margin: 10px 0;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           球隊區域
+        ========================= */
+
+        .teams {
+            margin-top: 60px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            transform: scale(1.03);
+        }
+
+        .team-logo {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .team-card h3 {
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .team-card p {
+            color: #777;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           棒球知識
+        ========================= */
+
+        .knowledge {
+            margin-top: 60px;
+        }
+
+        .knowledge-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 18px;
+
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+            line-height: 1.8;
+        }
+
+        .knowledge-box h3 {
+            color: #1b5e20;
+        }
+
+        .knowledge-box ul {
+            padding-left: 25px;
+        }
+
+        .knowledge-box li {
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           我的棒球學習
+        ========================= */
+
+        .my-baseball {
+            margin-top: 60px;
+        }
+
+        .my-box {
+            background: linear-gradient(135deg, #ffffff, #e8f5e9);
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+            text-align: center;
+        }
+
+        .my-box h2 {
+            color: #1b5e20;
+        }
+
+        .my-box p {
+            max-width: 750px;
+            margin: auto;
+            line-height: 2;
+            color: #555;
+        }
+
+
+        /* =========================
+           回首頁按鈕
+        ========================= */
+
+        .home-button {
+            display: inline-block;
+
+            margin-top: 25px;
+
+            padding: 13px 28px;
+
+            background-color: #1b5e20;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #e53935;
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           Footer
+        ========================= */
+
+        footer {
+            margin-top: 70px;
+
+            background-color: #1b5e20;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           手機版
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            header .ball {
+                font-size: 55px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
 </head>
+
+
 <body>
 
-    <h1>⚾ 棒球專區</h1>
 
-    <p>歡迎來到棒球專區！</p>
+<!-- =========================
+     頂部
+========================= -->
 
-    <a href="/">⬅ 回首頁</a>
+<header>
 
-</body>
-</html>
+    <div class="ball">
+        ⚾
+    </div>
+
+    <h1>棒球專區</h1>
+
+    <p>
+        楊鈞亞的學習歷程｜探索棒球、認識棒球文化
+    </p>
+
+</header>
+
+
+<!-- =========================
+     導覽列
+========================= -->
+
+<nav>
+
+    <a href="/">🏠 首頁</a>
+
+    <a href="#features">⚾ 棒球功能</a>
+
+    <a href="#teams">🏆 球隊</a>
+
+    <a href="#knowledge">📚 棒球知識</a>
+
+    <a href="#about">👤 我的棒球</a>
+
+</nav>
+
+
+<!-- =========================
+     主要內容
+========================= -->
+
+<div class="container">
+
+
+    <!-- 功能 -->
+
+    <section id="features">
+
+        <div class="section-title">
+
+            <h2>⚾ 棒球資訊</h2>
+
+            <p>
+                在這裡可以認識棒球相關資訊
+            </p>
+
+        </div>
+
+
+        <div class="card-grid">
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📅
+                </div>
+
+                <h3>
+                    比賽賽程
+                </h3>
+
+                <p>
+                    查看棒球比賽的日期、時間與對戰隊伍。
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📊
+                </div>
+
+                <h3>
+                    比賽比分
+                </h3>
+
+                <p>
+                    了解比賽目前的比分以及最終比賽結果。
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    球隊排名
+                </h3>
+
+                <p>
+                    認識各支球隊的戰績與排名。
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+                <h3>
+                    球員資訊
+                </h3>
+
+                <p>
+                    認識棒球選手以及他們在球場上的表現。
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 球隊 -->
+
+    <section id="teams" class="teams">
+
+        <div class="section-title">
+
+            <h2>🏆 中華職棒球隊</h2>
+
+            <p>
+                台灣職業棒球的重要組成
+            </p>
+
+        </div>
+
+
+        <div class="card-grid">
+
+
+            <div class="team-card">
+
+                <div class="team-logo">
+                    🦅
+                </div>
+
+                <h3>
+                    台鋼雄鷹
+                </h3>
+
+                <p>
+                    台灣職業棒球的新生力量。
+                </p>
+
+            </div>
+
+
+            <div class="team-card">
+
+                <div class="team-logo">
+                    🦁
+                </div>
+
+                <h3>
+                    統一獅
+                </h3>
+
+                <p>
+                    台灣職棒歷史悠久的球隊之一。
+                </p>
+
+            </div>
+
+
+            <div class="team-card">
+
+                <div class="team-logo">
+                    🐒
+                </div>
+
+                <h3>
+                    樂天桃猿
+                </h3>
+
+                <p>
+                    擁有熱情球迷與主場文化。
+                </p>
+
+            </div>
+
+
+            <div class="team-card">
+
+                <div class="team-logo">
+                    🐘
+                </div>
+
+                <h3>
+                    中信兄弟
+                </h3>
+
+                <p>
+                    台灣職棒的重要球隊之一。
+                </p>
+
+            </div>
+
+
+            <div class="team-card">
+
+                <div class="team-logo">
+                    🐲
+                </div>
+
+                <h3>
+                    味全龍
+                </h3>
+
+                <p>
+                    傳統球隊重新回到職業棒球舞台。
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 棒球知識 -->
+
+    <section id="knowledge" clas
+```
