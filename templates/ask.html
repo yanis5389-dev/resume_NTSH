@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ask a Question</title>
+    <title>多國語言字典</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
+            margin: 0;
+            padding: 0;
         }
         header {
             background-color: #4CAF50;
@@ -24,22 +26,76 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="text"][readonly] {
+            background-color: #e9ecef;
+        }
+        .btn-group {
+            margin-top: 15px;
+        }
+        input[type="submit"], input[type="button"] {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+        input[type="button"] {
+            background-color: #6c757d;
+            color: white;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>字典</h1>
+        <h1>多國語言字典</h1>
     </header>
     <section>
         <div class="form-box">
             <form action="/ask" method="post">
-                <label for="question">中文:</label><br>
-                <input type="text" id="question" name="question" value="{{ question }}"><br><br>
-                <label for="answer">韓文:</label><br>
-                <input type="text" id="answer" name="answer" readonly value="{{ answer }}"><br><br>
-                <input type="submit" value="送出">
-                <input type="button" value="回首頁" onclick="window.location.href='/'">
+                <div class="form-group">
+                    <label for="question">中文:</label>
+                    <input type="text" id="question" name="question" value="{{ question }}" required>
+                </div>
+
+                <!-- 新增：語言選擇下拉選單 -->
+                <div class="form-group">
+                    <label for="lang">選擇翻譯語言:</label>
+                    <select id="lang" name="lang">
+                        <option value="ko" {% if selected_lang == 'ko' %}selected{% endif %}>韓文</option>
+                        <option value="ja" {% if selected_lang == 'ja' %}selected{% endif %}>日文</option>
+                        <option value="en" {% if selected_lang == 'en' %}selected{% endif %}>英文</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="answer">翻譯結果:</label>
+                    <input type="text" id="answer" name="answer" readonly value="{{ answer }}">
+                </div>
+
+                <div class="btn-group">
+                    <input type="submit" value="送出">
+                    <input type="button" value="回首頁" onclick="window.location.href='/'">
+                </div>
             </form>
         </div>
     </section>
